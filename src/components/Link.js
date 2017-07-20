@@ -1,23 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import RaisedButton from 'material-ui/RaisedButton';
 
-const Link = ({ active, children, onClick }) => {
-    if (active) {
-        return <span>{children}</span>
+const style = {
+    marginRight: 12
+}
+
+class Link extends React.Component {
+    constructor(props) {
+        super(props);
     }
 
-    return (
-        <a
-            href="#"
-            onClick={e => {
-                e.preventDefault();
-                onClick();
-            }}
-        >
-            {children}
-        </a>
-    )
-};
+    render() {
+        return (
+            <RaisedButton
+                label={this.props.children}
+                style={style}
+                disabled={this.props.active}
+                primary={this.props.primary}
+                secondary={this.props.secondary}
+                onTouchTap={this.props.onClick}
+            />
+        )
+    }
+}
 
 Link.propTypes = {
     active: PropTypes.bool.isRequired,
